@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DisasterX AI — Detect. Locate. Respond. Save Lives.</title>
+    
+    <!-- Google Fonts: Syne & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#0D0D0D',
+                        panel: '#1A1A1A',
+                        text: '#E5E5E5',
+                        muted: '#737373',
+                        accent: '#FF4500',
+                        bordercolor: '#292929',
+                    },
+                    fontFamily: {
+                        syne: ['Syne', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --bg: #0D0D0D;
+            --panel: #1A1A1A;
+            --text: #E5E5E5;
+            --muted: #737373;
+            --accent: #FF4500;
+            --border: #292929;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, .font-syne {
+            font-family: 'Syne', sans-serif;
+        }
+        /* Custom scrollbar for brutalist aesthetic */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0D0D0D;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #292929;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF4500;
+        }
+    </style>
+</head>
+<body class="bg-[#0D0D0D] text-[#E5E5E5] antialiased selection:bg-[#FF4500] selection:text-white">
+
+    <!-- NAVBAR -->
+    <header class="fixed top-0 left-0 w-full h-[70px] md:h-[72px] bg-[#0D0D0D] border-b border-[#292929] z-50 flex items-center justify-between px-6 md:px-12">
+        <div class="font-syne font-bold text-lg tracking-wider text-[#E5E5E5]">
+            DISASTERX AI
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-8 text-sm font-inter">
+            <a href="#home" class="text-[#E5E5E5] relative pb-1 transition-colors hover:text-[#E5E5E5]">
+                Home
+                <span class="absolute bottom-0 left-0 w-full h-[2px] bg-[#FF4500]"></span>
+            </a>
+            <a href="#how-it-works" class="text-[#737373] hover:text-[#E5E5E5] transition-colors">How It Works</a>
+            <a href="#drone-ai" class="text-[#737373] hover:text-[#E5E5E5] transition-colors">Drone AI</a>
+            <a href="#response" class="text-[#737373] hover:text-[#E5E5E5] transition-colors">Response</a>
+            <a href="#technology" class="text-[#737373] hover:text-[#E5E5E5] transition-colors">Technology</a>
+            <a href="#research" class="text-[#737373] hover:text-[#E5E5E5] transition-colors">Research</a>
+        </nav>
+
+        <!-- Mobile Hamburger Button -->
+        <button id="menu-btn" class="md:hidden text-[#E5E5E5] focus:outline-none p-2" aria-label="Toggle menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-[#0D0D0D] z-40 flex flex-col justify-center px-10 space-y-6 transform translate-x-full transition-transform duration-300 md:hidden">
+        <a href="#home" class="mobile-link text-2xl font-syne text-[#E5E5E5]">Home</a>
+        <a href="#how-it-works" class="mobile-link text-2xl font-syne text-[#737373]">How It Works</a>
+        <a href="#drone-ai" class="mobile-link text-2xl font-syne text-[#737373]">Drone AI</a>
+        <a href="#response" class="mobile-link text-2xl font-syne text-[#737373]">Response</a>
+        <a href="#technology" class="mobile-link text-2xl font-syne text-[#737373]">Technology</a>
+        <a href="#research" class="mobile-link text-2xl font-syne text-[#737373]">Research</a>
+    </div>
+
+    <main class="pt-[70px] md:pt-[72px]">
+        <!-- SECTION 1 — HERO -->
+        <section id="home" class="min-h-[calc(100vh-70px)] flex items-center px-6 md:px-12 py-16 border-b border-[#292929]">
+            <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                
+                <!-- Left Column -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="text-[#FF4500] font-inter text-xs font-semibold tracking-widest uppercase">
+                        AI-POWERED DISASTER RESPONSE
+                    </div>
+                    
+                    <h1 class="font-syne font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-[#E5E5E5] leading-[1.1]">
+                        DETECT.<br>
+                        LOCATE.<br>
+                        <span class="text-[#FF4500]">RESPOND.</span><br>
+                        SAVE LIVES.
+                    </h1>
+                    
+                    <p class="font-inter text-[#737373] text-base md:text-lg max-w-lg leading-relaxed">
+                        DisasterX AI combines drone vision, sensor fusion and intelligent response to help identify people in difficult disaster environments and support faster rescue decisions.
+                    </p>
+                    
+                    <div class="pt-2">
+                        <a href="#how-it-works" class="inline-flex items-center text-sm font-inter font-medium text-[#E5E5E5] hover:text-[#FF4500] transition-colors group">
+                            Explore how it works 
+                            <span class="ml-2 text-[#FF4500] transform group-hover:translate-x-1 transition-transform">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column (Video Container) -->
+                <div class="lg:col-span-6">
+                    <div class="rounded-[10px] border border-[#292929] bg-[#1A1A1A] overflow-hidden shadow-2xl">
+                        <div class="aspect-video w-full bg-black relative flex items-center justify-center">
+                            <!-- Video Placeholder: Can be replaced with actual video file later -->
+                            <video class="w-full h-full object-cover" controls poster="https://placehold.co/1280x720/1A1A1A/737373?text=DisasterX+AI+Vision">
+                                <source src="" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="mt-3 text-[11px] font-inter tracking-widest uppercase text-[#737373]">
+                        AI VISION — VICTIM DETECTION
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 2 — THE CHALLENGE -->
+        <section id="how-it-works" class="py-24 px-6 md:px-12 border-b border-[#292929]">
+            <div class="max-w-7xl mx-auto space-y-16">
+                
+                <div class="max-w-2xl space-y-4">
+                    <div class="text-[#FF4500] font-inter text-xs font-semibold tracking-widest uppercase">
+                        WHEN DISASTER STRIKES
+                    </div>
+                    <h2 class="font-syne font-bold text-3xl md:text-4xl text-[#E5E5E5] tracking-tight">
+                        Finding people becomes the first challenge.
+                    </h2>
+                    <p class="font-inter text-[#737373] text-base md:text-lg leading-relaxed">
+                        "Floodwater, smoke, darkness and damaged terrain can make victims difficult to identify and reach."
+                    </p>
+                </div>
+
+                <!-- Three Visual Media Panels -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                    
+                    <!-- Panel 01 -->
+                    <div class="bg-[#1A1A1A] border border-[#292929] rounded-[8px] overflow-hidden flex flex-col group">
+                        <div class="aspect-[4/3] w-full overflow-hidden bg-black relative">
+                            <img src="https://placehold.co/600x450/111111/444444?text=Flood+Disaster+Zone" alt="Rising Water Flood Zone" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://placehold.co/600x450/1A1A1A/737373?text=Image+Unavailable'">
+                        </div>
+                        <div class="p-6 md:p-8 flex flex-col flex-grow justify-between space-y-4">
+                            <div>
+                                <span class="text-xs font-inter text-[#FF4500] font-semibold tracking-widest">01 / FLOOD</span>
+                                <h3 class="font-syne font-bold text-xl text-[#E5E5E5] mt-2">RISING WATER</h3>
+                            </div>
+                            <p class="font-inter text-[#737373] text-sm leading-relaxed">
+                                "People can become isolated or trapped as access routes disappear."
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Panel 02 -->
+                    <div class="bg-[#1A1A1A] border border-[#292929] rounded-[8px] overflow-hidden flex flex-col group">
+                        <div class="aspect-[4/3] w-full overflow-hidden bg-black relative">
+                            <img src="https://placehold.co/600x450/111111/444444?text=Fire+and+Smoke" alt="Fire and Smoke Environment" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://placehold.co/600x450/1A1A1A/737373?text=Image+Unavailable'">
+                        </div>
+                        <div class="p-6 md:p-8 flex flex-col flex-grow justify-between space-y-4">
+                            <div>
+                                <span class="text-xs font-inter text-[#FF4500] font-semibold tracking-widest">02 / FIRE & SMOKE</span>
+                                <h3 class="font-syne font-bold text-xl text-[#E5E5E5] mt-2">LIMITED VISIBILITY</h3>
+                            </div>
+                            <p class="font-inter text-[#737373] text-sm leading-relaxed">
+                                "Smoke and low visibility can make victims difficult to identify."
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Panel 03 -->
+                    <div class="bg-[#1A1A1A] border border-[#292929] rounded-[8px] overflow-hidden flex flex-col group">
+                        <div class="aspect-[4/3] w-full overflow-hidden bg-black relative">
+                            <img src="https://placehold.co/600x450/111111/444444?text=Debris+and+Collapse" alt="Debris and Collapsed Infrastructure" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://placehold.co/600x450/1A1A1A/737373?text=Image+Unavailable'">
+                        </div>
+                        <div class="p-6 md:p-8 flex flex-col flex-grow justify-between space-y-4">
+                            <div>
+                                <span class="text-xs font-inter text-[#FF4500] font-semibold tracking-widest">03 / DEBRIS</span>
+                                <h3 class="font-syne font-bold text-xl text-[#E5E5E5] mt-2">HARD-TO-REACH AREAS</h3>
+                            </div>
+                            <p class="font-inter text-[#737373] text-sm leading-relaxed">
+                                "Damaged infrastructure and debris can make ground searches difficult."
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3 — FOUR-STEP SYSTEM -->
+        <section id="drone-ai" class="py-24 px-6 md:px-12 border-b border-[#292929]">
+            <div class="max-w-7xl mx-auto space-y-16">
+                
+                <div class="max-w-2xl space-y-4">
+                    <div class="text-[#FF4500] font-inter text-xs font-semibold tracking-widest uppercase">
+                        ONE SYSTEM. FOUR INTELLIGENT STEPS.
+                    </div>
+                    <h2 class="font-syne font-bold text-3xl md:text-4xl text-[#E5E5E5] tracking-tight">
+                        From detection to rescue.
+                    </h2>
+                </div>
+
+                <!-- Process Diagram: Horizontal on Desktop, Vertical on Mobile -->
+                <div class="relative">
+                    <!-- Connecting Line Behind Steps (Desktop only) -->
+                    <div class="hidden lg:block absolute top-[28px] left-[10%] right-[10%] h-[1px] bg-[#292929] z-0">
+                        <div class="absolute left-0 top-0 w-1/4 h-full bg-[#FF4500]"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 relative z-10">
+                        
+                        <!-- Step 01 -->
+                        <div class="bg-[#1A1A1A] lg:bg-transparent p-6 lg:p-0 border lg:border-none border-[#292929] rounded-[8px] space-y-4">
+                            <div class="w-14 h-14 bg-[#0D0D0D] lg:bg-[#1A1A1A] border border-[#292929] rounded-full flex items-center justify-center font-syne font-bold text-lg text-[#FF4500]">
+                                01
+                            </div>
+                            <div class="space-y-1">
+                                <h3 class="font-syne font-bold text-xl text-[#E5E5E5]">DETECT</h3>
+                                <p class="font-inter text-[#737373] text-sm font-medium">AI Vision</p>
+                                <p class="font-inter text-[#737373] text-xs pt-2">RGB + Thermal imaging feeds analyzed in real-time for anomaly detection.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 02 -->
+                        <div class="bg-[#1A1A1A] lg:bg-transparent p-6 lg:p-0 border lg:border-none border-[#292929] rounded-[8px] space-y-4">
+                            <div class="w-14 h-14 bg-[#0D0D0D] lg:bg-[#1A1A1A] border border-[#292929] rounded-full flex items-center justify-center font-syne font-bold text-lg text-[#E5E5E5]">
+                                02
+                            </div>
+                            <div class="space-y-1">
+                                <h3 class="font-syne font-bold text-xl text-[#E5E5E5]">LOCATE</h3>
+                                <p class="font-inter text-[#737373] text-sm font-medium">GPS / GNSS</p>
+                                <p class="font-inter text-[#737373] text-xs pt-2">Precise georeferencing to pin exact victim and hazard coordinates.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 03 -->
+                        <div class="bg-[#1A1A1A] lg:bg-transparent p-6 lg:p-0 border lg:border-none border-[#292929] rounded-[8px] space-y-4">
+                            <div class="w-14 h-14 bg-[#0D0D0D] lg:bg-[#1A1A1A] border border-[#292929] rounded-full flex items-center justify-center font-syne font-bold text-lg text-[#E5E5E5]">
+                                03
+                            </div>
+                            <div class="space-y-1">
+                                <h3 class="font-syne font-bold text-xl text-[#E5E5E5]">PRIORITIZE</h3>
+                                <p class="font-inter text-[#737373] text-sm font-medium">Risk Analysis</p>
+                                <p class="font-inter text-[#737373] text-xs pt-2">Automated incident ranking based on exposure and medical urgency.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 04 -->
+                        <div class="bg-[#1A1A1A] lg:bg-transparent p-6 lg:p-0 border lg:border-none border-[#292929] rounded-[8px] space-y-4">
+                            <div class="w-14 h-14 bg-[#0D0D0D] lg:bg-[#1A1A1A] border border-[#292929] rounded-full flex items-center justify-center font-syne font-bold text-lg text-[#E5E5E5]">
+                                04
+                            </div>
+                            <div class="space-y-1">
+                                <h3 class="font-syne font-bold text-xl text-[#E5E5E5]">RESPOND</h3>
+                                <p class="font-inter text-[#737373] text-sm font-medium">Rescue Coordination</p>
+                                <p class="font-inter text-[#737373] text-xs pt-2">Streamlined alerts and optimal routing dispatched directly to teams.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 4 — SEE DISASTERX AI IN ACTION -->
+        <section id="response" class="py-24 px-6 md:px-12 border-b border-[#292929]">
+            <div class="max-w-7xl mx-auto space-y-16">
+                
+                <div class="max-w-2xl space-y-4">
+                    <div class="text-[#FF4500] font-inter text-xs font-semibold tracking-widest uppercase">
+                        SEE DISASTERX AI IN ACTION
+                    </div>
+                    <h2 class="font-syne font-bold text-3xl md:text-4xl text-[#E5E5E5] tracking-tight">
+                        AI vision built for difficult conditions.
+                    </h2>
+                    <p class="font-inter text-[#737373] text-base md:text-lg leading-relaxed">
+                        "Computer vision helps identify people across challenging disaster environments."
+                    </p>
+                </div>
+
+                <!-- 2x2 Media Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+                    
+                    <!-- Card 1 -->
+                    <div class="bg-[#1A1A1A] border border-[#292929] rounded-[8px] overflow-hidden flex flex-col">
+                        <div class="aspect-video w-full bg-black relative">
+                            <video class="w-full h-full object-cover" controls poster="https://placehold.co/960x540/1A1A1A/737373?text=Flood+Detection+Placeholder">
+                                <source src="" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="p-6 md:p-8 space-y-2">
+                            <h3 class="font-syne font-bold text-xl text-[#E5E5E5]">FLOOD DETECTION</h3>
+                            <p class="font-inter text-[#737373] text-sm leading-relaxed">
+                                Identifying stranded individuals in submerged urban and rural sectors.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-[#1A1A1A] border border-[#292929] rounded-[8px] overflow-hidden flex flex-col">
+                        <div class="aspect-video w-full bg-black relative">
+                            <video class="w-full h-full object-cover" controls poster="https://placehold.co/960x540/1A1A1A/737373?text=Low-Light+Detection+Placeholder">
+                                <source src="" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="p-6 md:p-8 space-y-2">
+                            <h3 class="font-syne font-bold text-xl text-[#E5E5E5]">LOW-LIGHT DETECTION</h3>
+                            <p class="font-inter text-[#737373] text-sm leading-relaxed">
+                                Night-operations vision utilizing thermal signature analysis.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-[#1A1A1A] border border-[#292929] rounded-[8px] overflow-hidden flex flex-col">
+                        <div class="aspect-video w-full bg-black relative">
+                            <video class="w-full h-full object-cover" controls poster="https://placehold.co/960x540/1A1A1A/737373?text=Smoke+Detection+Placeholder">
+                                <source src="" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="p-6 md:p-8 space-y-2">
+                            <h3 class="font-syne font-bold text-xl text-[#E5E5E5]">SMOKE DETECTION</h3>
+                            <p class="font-inter text-[#737373] text-sm leading-relaxed">
+                                Penetrating dense smoke layers to pinpoint survivors in wildfire zones.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="bg-[#1A1A1A] border border-[#292929] rounded-[8px] overflow-hidden flex flex-col">
+                        <div class="aspect-video w-full bg-black relative">
+                            <video class="w-full h-full object-cover" controls poster="https://placehold.co/960x540/1A1A1A/737373?text=Occlusion+Debris+Placeholder">
+                                <source src="" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="p-6 md:p-8 space-y-2">
+                            <h3 class="font-syne font-bold text-xl text-[#E5E5E5]">OCCLUSION / DEBRIS</h3>
+                            <p class="font-inter text-[#737373] text-sm leading-relaxed">
+                                Detecting human presence amidst rubble and collapsed building structures.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 5 — SIMPLE PROJECT STATEMENT -->
+        <section id="technology" class="py-32 px-6 md:px-12 bg-[#0D0D0D] border-b border-[#292929] text-center">
+            <div class="max-w-4xl mx-auto space-y-8">
+                <div class="text-[#FF4500] font-inter text-xs font-semibold tracking-widest uppercase">
+                    DISASTERX AI
+                </div>
+                
+                <h2 class="font-syne font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#E5E5E5] tracking-tight leading-[1.1]">
+                    Detect.<br>
+                    Locate.<br>
+                    Respond.<br>
+                    Save Lives.
+                </h2>
+                
+                <p class="font-inter text-[#737373] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                    "An AI-powered approach to disaster detection, victim localization and coordinated response."
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="research" class="py-12 px-6 md:px-12 bg-[#0D0D0D] border-t border-[#292929]">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center space-y-8 md:space-y-0">
+            
+            <div class="space-y-2">
+                <div class="font-syne font-bold text-lg text-[#E5E5E5]">
+                    DISASTERX AI
+                </div>
+                <p class="font-inter text-xs text-[#737373]">
+                    &copy; 2026 DisasterX AI Project. All rights reserved.
+                </p>
+            </div>
+
+            <nav class="flex flex-wrap gap-x-8 gap-y-4 text-sm font-inter text-[#737373]">
+                <a href="#how-it-works" class="hover:text-[#E5E5E5] transition-colors">How It Works</a>
+                <a href="#drone-ai" class="hover:text-[#E5E5E5] transition-colors">Drone AI</a>
+                <a href="#response" class="hover:text-[#E5E5E5] transition-colors">Response</a>
+                <a href="#technology" class="hover:text-[#E5E5E5] transition-colors">Technology</a>
+                <a href="#research" class="hover:text-[#E5E5E5] transition-colors">Research</a>
+            </nav>
+
+        </div>
+    </footer>
+
+    <!-- Simple JS for Mobile Menu Toggle -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('translate-x-full');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
+        });
+    </script>
+</body>
+</html>
